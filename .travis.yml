@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services:
   - docker
@@ -6,7 +7,7 @@ before_install:
   - docker build -t borjas/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true borjas/react-test npm test
+  - docker run -e CI=true borjas/react-test npm run test
 
 after_success:
   - docker build -t borjas/multi-client ./client
@@ -20,4 +21,4 @@ after_success:
   - docker push borjas/multi-nginx
   - docker push borjas/multi-server
   - docker push borjas/multi-worker
-  
+
